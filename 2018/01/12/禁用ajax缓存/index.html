@@ -22,7 +22,7 @@
         
     </title>
 
-    <link rel="canonical" href="http://wanglinaiii111.github.io/archives/2017/">
+    <link rel="canonical" href="http://wanglinaiii111.github.io/2018/01/12/禁用ajax缓存/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="false
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -115,107 +115,132 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
         background-image: url('')
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>archives</h1>
-                    <span class="subheading">���Ը��ݹ鵵���ڼ��������ļ�</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1></h1>
+                    
+                    <span class="meta">
+                         作者 WangWang
+                        <span>
+                          日期 2018-01-12
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="post-title-haojen">
+        <span>
+            
+        </span>
+    </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- archive list -->
-            
-				
-				
-				
-					
-					
-					<div class="archive archive-year" data-date="2018">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2018">2018</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201801">
-						<h3 class="archive-title">
-							<a href="/archives/2018/01">01</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/01/12/禁用ajax缓存/">
-                        <h4 class="post-title">
-                            Untitled
-                        </h4>
-                        
-                    </a>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <h1 id="禁用ajax缓存"><a href="#禁用ajax缓存" class="headerlink" title="禁用ajax缓存"></a>禁用ajax缓存</h1><p>在做项目得过程中遇到一个问题，发现每次发送ajax请求得时候，请求回来得数据都是一样的，但事实上后台数据已经发生改变，必须清除缓存才能请求到最新数据。</p>
+<p>ajax能提高页面载入的速度主要的原因是通过ajax减少了重复数据的载入，也就是说在载入数据的同时将数据缓存到内存中，当再次请求得url和缓存中url一样时，就不再向服务器请求数据，直接使用缓存数据。但是为了保证我们看到的数据是最新的，就需要禁用Ajax缓存功能。</p>
+<p>解决方案有如下几种：</p>
+<ol>
+<li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“If-Modified-Since”,”0”)。</li>
+<li>在ajax发送请求前加上 anyAjaxObj.setRequestHeader(“Cache-Control”,”no-cache”)。</li>
+<li>在URL后面加上一个随机数： “fresh=” + Math.random();。</li>
+<li>在URL后面加上时间搓：”nowtime=” + new Date().getTime();。</li>
+<li>如果是使用jQuery，直接这样就可以了$.ajaxSetup({cache:false})。这样页面的所有ajax都会执行这条语句就是不需要保存缓存记录。</li>
+</ol>
+<p>本次解决这个问题使用的是在url后加时间戳，可以看到每次进入页面都是向服务器重新请求数据。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">        url: &quot;/MQSP/MainServlet?nowtime=&quot;+new Date().getTime(),</span><br><span class="line">        type: &quot;post&quot;,</span><br><span class="line">        dataType: &apos;JSON&apos;,</span><br><span class="line">        data: &#123;</span><br><span class="line">        &#125;,</span><br><span class="line">        success: function (data) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2017/12/19/hello-world/" data-toggle="tooltip" data-placement="top"
+                           title="Hello World">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#禁用ajax缓存"><span class="toc-text"><a href="#&#x7981;&#x7528;ajax&#x7F13;&#x5B58;" class="headerlink" title="&#x7981;&#x7528;ajax&#x7F13;&#x5B58;"></a>&#x7981;&#x7528;ajax&#x7F13;&#x5B58;</span></a></li></ol>
                 </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-					
-					</div><!--month-->
-					</div><!--year-->
-					
-					
-					
-					<div class="archive archive-year" data-date="2017">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2017">2017</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201712">
-						<h3 class="archive-title">
-							<a href="/archives/2017/12">12</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2017/12/19/hello-world/">
-                        <h4 class="post-title">
-                            Hello World
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
