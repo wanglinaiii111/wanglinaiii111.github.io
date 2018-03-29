@@ -18,11 +18,11 @@
     <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.css">
     <title>
         
-        X-MAS&#39;s blog
+        封装swiper上下联动效果的组件｜X-MAS&#39;s blog
         
     </title>
 
-    <link rel="canonical" href="http://wanglinaiii111.github.io/tags/string-slice/">
+    <link rel="canonical" href="http://wanglinaiii111.github.io/2018/03/29/封装swiper上下联动效果的组件/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -43,7 +43,7 @@
 <!-- hack iOS CSS :active style -->
 <body ontouchstart="" class="animated fadeIn">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "false" data-istags="true
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top " id="nav-top" data-ispost = "true" data-istags="false
 " data-ishome = "false" >
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -115,128 +115,132 @@
 </script>
 
 <!-- Main Content -->
+
+<!--only post-->
+
+
+<img class="wechat-title-img"
+     src="">
+
+
 <style>
-    .intro-header .site-heading {
-        margin: 50px;
-    }
     
     header.intro-header {
         background-image: url('')
     }
+
     
 </style>
 
-<!-- Page Header -->
 <header class="intro-header">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading text-center">
-                    <h1>archives</h1>
-                    <span class="subheading">���Ը��ݹ鵵���ڼ��������ļ�</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 text-center">
+                <div class="post-heading">
+                    <h1>封装swiper上下联动效果的组件</h1>
+                    
+                    <span class="meta">
+                         作者 WangWang
+                        <span>
+                          日期 2018-03-29
+                         </span>
+                    </span>
+                    <div class="tags text-center">
+                        
+                        <a class="tag" href="/tags/#swiper"
+                           title="swiper">swiper</a>
+                        
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="post-title-haojen">
+        <span>
+            封装swiper上下联动效果的组件
+        </span>
+    </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- archive list -->
-            
-				
-				
-				
-					
-					
-					<div class="archive archive-year" data-date="2018">
-						<h2 class="archive-title">
-						<span class="fa fa-archive">
-							<a href="/archives/2018">2018</a>
-						</span>
-						</h2>
-				
-				
-					
-					
-					<div class="archive archive-month" data-date="201803">
-						<h3 class="archive-title">
-							<a href="/archives/2018/03">03</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/03/29/封装swiper上下联动效果的组件/">
-                        <h4 class="post-title">
-                            封装swiper上下联动效果的组件
-                        </h4>
-                        
-                    </a>
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <!-- Post Container -->
+            <div class="col-lg-8 col-lg-offset-1 col-sm-9 post-container">
+                <p>需求：实现类似今日头条页面滑动联动效果</p>
+<p>说明：滑动页面正文部分顶部标题跟着滑动，点击顶部标题，页面跳转到和顶部swiper索引相同的页面</p>
+<p>js:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">var sliderNum = 0;</span><br><span class="line">var swiper_content;</span><br><span class="line">var swiper_nav;</span><br><span class="line">function initSwiper() &#123;</span><br><span class="line">    swiper_nav = new Swiper(&apos;.swiper-topNav&apos;, &#123;</span><br><span class="line">        slidesPerView: 3,</span><br><span class="line">        spaceBetween: 0,</span><br><span class="line">        onSlideChangeEnd: function (swiper) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    swiper_content = new Swiper(&apos;.swiper-content&apos;, &#123;</span><br><span class="line">        onSlideChangeEnd: function (swiper) &#123;</span><br><span class="line">            sliderNum = swiper.activeIndex;</span><br><span class="line">            swiper_nav.slideTo(sliderNum, 500, false);</span><br><span class="line">            jQuery(&apos;.swiper-topNav .swiper-wrapper div&apos;).css(&quot;color&quot;, &quot;#000&quot;);</span><br><span class="line">            jQuery(&apos;.swiper-topNav .swiper-wrapper div&apos;).css(&quot;border-bottom&quot;, &quot;1px solid #fff&quot;);</span><br><span class="line">            jQuery(&apos;.swiper-topNav .swiper-wrapper div[data-id=&apos; + sliderNum + &apos;]&apos;).css(&quot;color&quot;, &quot;RGB(238,84,50)&quot;);</span><br><span class="line">            jQuery(&apos;.swiper-topNav .swiper-wrapper div[data-id=&apos; + sliderNum + &apos;]&apos;).css(&quot;border-bottom&quot;, &quot;1px solid RGB(238,84,50)&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    jQuery(&apos;.swiper-topNav .swiper-wrapper div&apos;).each(function (index, item) &#123;</span><br><span class="line">        jQuery(item).attr(&apos;data-id&apos;, index);</span><br><span class="line">        sliderLength = index;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    jQuery(&apos;.swiper-topNav .swiper-wrapper div&apos;).on(&apos;click&apos;, function () &#123;</span><br><span class="line">        $(&apos;.swiper-topNav .swiper-wrapper div&apos;).css(&quot;color&quot;, &quot;#222&quot;);</span><br><span class="line">        $(&apos;.swiper-topNav .swiper-wrapper div&apos;).css(&quot;border-bottom&quot;, &quot;1px solid #fff&quot;);</span><br><span class="line">        $(this).css(&quot;color&quot;, &quot;RGB(238,84,50)&quot;);</span><br><span class="line">        $(this).css(&quot;border-bottom&quot;, &quot;1px solid RGB(238,84,50)&quot;);</span><br><span class="line">        sliderNum = $(this).attr(&quot;data-id&quot;);</span><br><span class="line">        swiper_content.slideTo(sliderNum, 500, false);</span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">    swiper_content.slideTo(sliderNum, 500, false);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>html:</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&lt;div class=&quot;swiper-container swiper-topNav&quot;&gt;</span><br><span class="line">    &lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">        &lt;!--标题--&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;div class=&quot;swiper-container swiper-content&quot;&gt;</span><br><span class="line">    &lt;!-- Add Pagination --&gt;</span><br><span class="line">    &lt;div class=&quot;swiper-wrapper&quot;&gt;</span><br><span class="line">     &lt;!--内容--&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+                <hr>
+                
+
+                <ul class="pager">
+                    
+                    
+                    <li class="next">
+                        <a href="/2018/03/29/在字符串中每隔3个字符插入符号的方法/" data-toggle="tooltip" data-placement="top"
+                           title="在字符串中每隔3个字符插入符号的方法">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                
+
+                
+
+
+                <!--加入新的评论系统-->
+                
+            </div>
+
+            <div class="hidden-xs col-sm-3 toc-col">
+                <div class="toc-wrap">
+                    
                 </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/03/29/在字符串中每隔3个字符插入符号的方法/">
-                        <h4 class="post-title">
-                            在字符串中每隔3个字符插入符号的方法
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/03/29/解决swiper和iframe干架问题/">
-                        <h4 class="post-title">
-                            解决swiper和iframe干架问题
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
-				
-				
-				
-				
-					
-					</div><!--month-->
-					
-					
-					<div class="archive archive-month" data-date="201801">
-						<h3 class="archive-title">
-							<a href="/archives/2018/01">01</a>
-						</h3>
-				
-				<div class="one-tag-list">
-                <div class="post-preview">
-                    <a href="/2018/01/15/禁用ajax缓存/">
-                        <h4 class="post-title">
-                            禁用ajax缓存
-                        </h4>
-                        
-                    </a>
-                </div>
-				<hr>
-				</div>
-            
+            </div>
         </div>
+
+        <div class="row">
+            <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5 class="text-center">
+                        <a href="/tags/">FEATURED TAGS</a>
+                    </h5>
+                    <div class="tags">
+                        
+                        <a class="tag" href="/tags/#swiper"
+                           title="swiper">swiper</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+            </div>
+        </div>
+
     </div>
+</article>
+
+
+
+
+
+
 
 <!-- Footer -->
 <!-- Footer -->
